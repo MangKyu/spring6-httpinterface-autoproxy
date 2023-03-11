@@ -7,7 +7,18 @@ import org.springframework.web.reactive.function.client.support.WebClientAdapter
 import org.springframework.web.service.annotation.HttpExchange;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
-public class SimpleHttpInterfaceFactory {
+public class SimpleHttpInterfaceFactory implements HttpInterfaceFactory {
+
+    private final WebClient webClient;
+
+    public SimpleHttpInterfaceFactory(WebClient webClient) {
+        this.webClient = webClient;
+    }
+
+    @Override
+    public <S> S create(Class<S> clientClass) {
+        return this.create(clientClass, webClient);
+    }
 
     public <S> S create(Class<S> clientClass, WebClient webClient) {
         HttpExchange httpExchange = AnnotationUtils.getAnnotation(clientClass, HttpExchange.class);

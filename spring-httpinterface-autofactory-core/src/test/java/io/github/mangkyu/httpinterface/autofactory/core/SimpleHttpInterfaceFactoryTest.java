@@ -16,10 +16,10 @@ class SimpleHttpInterfaceFactoryTest {
     @Test
     void createClient() {
         // given
-        SimpleHttpInterfaceFactory generator = new SimpleHttpInterfaceFactory();
+        HttpInterfaceFactory generator = new SimpleHttpInterfaceFactory(WebClient.create());
 
         // when
-        LocalhostHttpInterface result = generator.create(LocalhostHttpInterface.class, WebClient.create());
+        LocalhostHttpInterface result = generator.create(LocalhostHttpInterface.class);
 
         // then
         assertThat(result).isNotNull();
@@ -29,10 +29,10 @@ class SimpleHttpInterfaceFactoryTest {
     @ParameterizedTest
     void createClient_Fail_NoHttpExchangeHttpInterface(Class<?> httpInterface, Class<?> e) {
         // given
-        SimpleHttpInterfaceFactory factory = new SimpleHttpInterfaceFactory();
+        HttpInterfaceFactory generator = new SimpleHttpInterfaceFactory(WebClient.create());
 
         // when
-        assertThatThrownBy(() -> factory.create(httpInterface, WebClient.create()))
+        assertThatThrownBy(() -> generator.create(httpInterface))
                 .isInstanceOf(e);
 
         // then
