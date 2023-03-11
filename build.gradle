@@ -10,10 +10,6 @@ allprojects {
     }
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
 subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
@@ -23,6 +19,17 @@ subprojects {
     version = '0.0.1-SNAPSHOT'
     sourceCompatibility = '17'
     targetCompatibility = '17'
+
+
+    bootJar.enabled = false
+    jar.enabled = true
+
+    test {
+        useJUnitPlatform {
+            excludeTags('develop', 'restdocs')
+        }
+    }
+
 
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'

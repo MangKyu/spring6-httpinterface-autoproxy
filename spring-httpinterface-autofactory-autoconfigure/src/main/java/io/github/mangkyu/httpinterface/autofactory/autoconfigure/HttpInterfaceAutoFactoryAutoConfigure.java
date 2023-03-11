@@ -1,13 +1,15 @@
-/*
- *
- *  HttpInterfaceAutoFactoryAutoConfigure.java 2023-03-11
- *
- *  Copyright 2023 WorksMobile Corp. All rights Reserved.
- *  WorksMobile PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- */
-
 package io.github.mangkyu.httpinterface.autofactory.autoconfigure;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Import;
+
+@ConditionalOnProperty(
+        prefix = "spring.web.httpinterface",
+        name = {"enabled"},
+        havingValue = "true",
+        matchIfMissing = true
+)
+@Import({HttpInterfaceAutoFactoryRegistrar.class})
 public class HttpInterfaceAutoFactoryAutoConfigure {
+
 }
