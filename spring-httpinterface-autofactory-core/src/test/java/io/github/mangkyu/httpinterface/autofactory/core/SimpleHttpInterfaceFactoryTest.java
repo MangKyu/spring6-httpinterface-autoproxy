@@ -1,4 +1,4 @@
-package org.springframework.web.service.autofactory;
+package io.github.mangkyu.httpinterface.autofactory.core;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,4 +1,4 @@
-package org.springframework.web.service.autofactory;
+package io.github.mangkyu.httpinterface.autofactory.core;
 
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.StringUtils;

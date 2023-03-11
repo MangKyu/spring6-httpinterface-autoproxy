@@ -1,4 +1,4 @@
-package org.springframework.web.service.autofactory;
+package io.github.mangkyu.httpinterface.autofactory.core;
 
 import org.springframework.web.service.annotation.GetExchange;
 
