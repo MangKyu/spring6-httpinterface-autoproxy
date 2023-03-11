@@ -1,0 +1,3 @@
+rootProject.name = 'httpinterface-autoadapter'
+include 'autoadapter-core'
+
