@@ -1,4 +1,4 @@
-package org.springframework.web.service.autoadapter;
+package org.springframework.web.service.autofactory;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

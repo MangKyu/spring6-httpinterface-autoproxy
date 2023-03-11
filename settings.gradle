@@ -1,3 +1,3 @@
-rootProject.name = 'httpinterface-autoadapter'
-include 'autoadapter-core'
+rootProject.name = 'spring-httpinterface-autofactory'
+include 'spring-httpinterface-autofactory-core'
 

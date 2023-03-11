@@ -1,4 +1,4 @@
-package org.springframework.web.service.autoadapter;
+package org.springframework.web.service.autofactory;
 
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.StringUtils;
