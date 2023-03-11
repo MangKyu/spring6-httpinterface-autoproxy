@@ -10,7 +10,9 @@ allprojects {
     }
 }
 
-
+tasks.named('test') {
+    useJUnitPlatform()
+}
 
 subprojects {
     apply plugin: 'java'
