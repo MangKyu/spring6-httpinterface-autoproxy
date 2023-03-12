@@ -1,9 +1,11 @@
 package io.github.mangkyu.httpinterface.autofactory.autoconfigure;
 
+import io.github.mangkyu.httpinterface.autofactory.core.HttpInterfaceFactory;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
@@ -12,9 +14,9 @@ import org.springframework.web.service.annotation.HttpExchange;
 import java.util.Set;
 
 @Configuration(proxyBeanMethods = false)
-public class HttpInterfaceAutoFactoryRegistrar {
+public class HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar {
 
-    public String findBasePackage(ApplicationContext applicationContext) {
+    String findBasePackage(ApplicationContext applicationContext) {
         return applicationContext.getBeansWithAnnotation(SpringBootApplication.class)
                 .values()
                 .stream()
@@ -23,7 +25,7 @@ public class HttpInterfaceAutoFactoryRegistrar {
                 .orElseThrow(() -> new IllegalStateException("SpringBootApplication annotation not found"));
     }
 
-    public Set<BeanDefinition> findHttpInterfaceBeanDefinitions(String basePackage, ApplicationContext context) {
+    Set<BeanDefinition> findHttpInterfaceBeanDefinitions(String basePackage, ApplicationContext context) {
         ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false, context.getEnvironment()) {
             @Override
             protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {

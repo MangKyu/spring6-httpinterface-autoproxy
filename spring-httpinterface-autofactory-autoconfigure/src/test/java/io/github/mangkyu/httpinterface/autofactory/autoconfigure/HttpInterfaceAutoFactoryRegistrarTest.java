@@ -15,7 +15,7 @@ class HttpInterfaceAutoFactoryRegistrarTest {
     @Test
     void findBasePackage() {
         // given
-        HttpInterfaceAutoFactoryRegistrar registrar = new HttpInterfaceAutoFactoryRegistrar();
+        HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar registrar = new HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar();
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestMainClass.class);
 //        context.refresh();
 
@@ -34,7 +34,7 @@ class HttpInterfaceAutoFactoryRegistrarTest {
     @Test
     void findBasePackage_NoSpringBootApplication() {
         // given
-        HttpInterfaceAutoFactoryRegistrar registrar = new HttpInterfaceAutoFactoryRegistrar();
+        HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar registrar = new HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar();
 
         // when
         assertThatThrownBy(() -> registrar.findBasePackage(new AnnotationConfigApplicationContext()))
@@ -46,7 +46,7 @@ class HttpInterfaceAutoFactoryRegistrarTest {
     @Test
     void findHttpInterfaceBeanDefinitions() {
         // given
-        HttpInterfaceAutoFactoryRegistrar registrar = new HttpInterfaceAutoFactoryRegistrar();
+        HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar registrar = new HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar();
 
         // when
         Set<BeanDefinition> result = registrar.findHttpInterfaceBeanDefinitions(

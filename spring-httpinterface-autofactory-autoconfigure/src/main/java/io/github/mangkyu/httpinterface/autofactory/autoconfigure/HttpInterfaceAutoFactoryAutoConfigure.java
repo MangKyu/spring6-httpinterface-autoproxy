@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
         havingValue = "true",
         matchIfMissing = true
 )
-@Import({HttpInterfaceAutoFactoryRegistrar.class})
+@Import({HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar.class})
 public class HttpInterfaceAutoFactoryAutoConfigure {
 
 }
