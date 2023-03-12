@@ -15,9 +15,9 @@ class HttpInterfaceAutoFactorySampleTest {
     private ExchangeRateHttpClient httpClient;
 
     @Test
-    void httpClientBeanGenerated() {
+    void httpInterfaceBeanGenerated() {
         assertThat(httpClient).isNotNull();
-        System.out.println(((Map<String, Map<String, Double>>) httpClient.getLatest()).get("rates").get("KRW"));
+        assertThat(((Map<String, Map<String, Double>>) httpClient.getLatest()).get("rates").get("KRW")).isNotNull();
     }
 
 }
