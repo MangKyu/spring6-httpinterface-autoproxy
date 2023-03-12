@@ -1,4 +1,4 @@
 rootProject.name = 'spring-httpinterface-autofactory'
 include 'spring-httpinterface-autofactory-core'
 include 'spring-httpinterface-autofactory-autoconfigure'
-
+include 'spring-httpinterface-autofactory-sample'

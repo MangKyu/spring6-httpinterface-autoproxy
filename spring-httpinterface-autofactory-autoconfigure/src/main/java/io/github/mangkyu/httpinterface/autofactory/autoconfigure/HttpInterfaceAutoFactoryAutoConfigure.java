@@ -5,6 +5,7 @@ import io.github.mangkyu.httpinterface.autofactory.core.SimpleHttpInterfaceFacto
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -15,6 +16,7 @@ import org.springframework.web.reactive.function.client.WebClient;
         matchIfMissing = true
 )
 @Import({HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar.class})
+@Configuration(proxyBeanMethods = false)
 public class HttpInterfaceAutoFactoryAutoConfigure {
 
     @Bean
