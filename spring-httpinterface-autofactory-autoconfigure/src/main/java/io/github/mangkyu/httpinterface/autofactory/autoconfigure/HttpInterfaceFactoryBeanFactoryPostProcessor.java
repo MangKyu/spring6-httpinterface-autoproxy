@@ -1,6 +1,5 @@
 package io.github.mangkyu.httpinterface.autofactory.autoconfigure;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.mangkyu.httpinterface.autofactory.core.HttpInterfaceFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -23,17 +22,20 @@ public class HttpInterfaceFactoryBeanFactoryPostProcessor implements BeanFactory
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        for (BeanDefinition beanDefinition : beanDefinitions) {
-            Class<?> httpInterfaceClass = findHttpInterfaceClass(beanDefinition);
-            beanFactory.registerSingleton(beanDefinition.getBeanClassName(), factory.create(httpInterfaceClass));
-        }
+        beanDefinitions.stream()
+                .filter(v -> StringUtils.hasText(v.getBeanClassName()))
+                .forEach(v -> findClassAndRegisterAsSingletonBean(beanFactory, v));
+    }
+
+    private void findClassAndRegisterAsSingletonBean(ConfigurableListableBeanFactory beanFactory, BeanDefinition v) {
+        beanFactory.registerSingleton(v.getBeanClassName(), createHttpInterfaceProxy(v));
+    }
+
+    private Object createHttpInterfaceProxy(BeanDefinition beanDefinition) {
+        return factory.create(findHttpInterfaceClass(beanDefinition));
     }
 
     private Class<?> findHttpInterfaceClass(BeanDefinition beanDefinition) {
-        if (!StringUtils.hasText(beanDefinition.getBeanClassName())) {
-            throw new IllegalStateException("BeanClassName is empty");
-        }
-
         try {
             return ClassUtils.forName(beanDefinition.getBeanClassName(), this.getClass().getClassLoader());
         } catch (ClassNotFoundException e) {
