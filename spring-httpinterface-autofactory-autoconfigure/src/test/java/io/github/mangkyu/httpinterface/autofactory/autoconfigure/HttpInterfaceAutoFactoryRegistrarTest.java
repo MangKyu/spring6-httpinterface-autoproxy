@@ -2,7 +2,6 @@ package io.github.mangkyu.httpinterface.autofactory.autoconfigure;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Set;
@@ -24,11 +23,6 @@ class HttpInterfaceAutoFactoryRegistrarTest {
 
         // then
         assertThat(result).isEqualTo("io.github.mangkyu.httpinterface.autofactory.autoconfigure");
-    }
-
-    @SpringBootApplication
-    static class TestMainClass {
-
     }
 
     @Test
