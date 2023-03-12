@@ -1,0 +1,6 @@
+bootJar.enabled = true
+jar.enabled = false
+
+dependencies {
+    implementation project(':spring-httpinterface-autoproxy-autoconfigure')
+}

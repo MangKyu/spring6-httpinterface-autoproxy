@@ -1,6 +1,0 @@
-bootJar.enabled = false
-jar.enabled = true
-
-dependencies {
-    implementation project(':spring-httpinterface-autofactory-core')
-}
