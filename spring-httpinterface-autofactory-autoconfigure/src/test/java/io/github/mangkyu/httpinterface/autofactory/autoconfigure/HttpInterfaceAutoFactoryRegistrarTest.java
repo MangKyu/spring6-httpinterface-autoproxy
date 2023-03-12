@@ -1,8 +1,10 @@
 package io.github.mangkyu.httpinterface.autofactory.autoconfigure;
 
+import io.github.mangkyu.httpinterface.autofactory.core.SimpleHttpInterfaceFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Set;
 
@@ -15,8 +17,10 @@ class HttpInterfaceAutoFactoryRegistrarTest {
     void findBasePackage() {
         // given
         HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar registrar = new HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar();
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestMainClass.class);
-//        context.refresh();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.registerBean(TestMainClass.class);
+        context.registerBean(SimpleHttpInterfaceFactory.class, WebClient.create());
+        context.refresh();
 
         // when
         String result = registrar.findBasePackage(context);

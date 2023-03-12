@@ -29,6 +29,7 @@ class HttpInterfaceAutoFactoryAutoConfigureTest {
         contextRunner.run(context -> {
                     assertThat(context).hasSingleBean(HttpInterfaceAutoFactoryAutoConfigure.class);
                     assertThat(context).hasSingleBean(HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar.class);
+                    assertThat(context).hasSingleBean(HelloHttpInterface.class);
                 });
     }
 
@@ -57,6 +58,11 @@ class HttpInterfaceAutoFactoryAutoConfigureTest {
         @Bean
         public WebClient webClient() {
             return WebClient.create();
+        }
+
+        @Bean
+        public TestMainClass mainClass() {
+            return new TestMainClass();
         }
 
     }

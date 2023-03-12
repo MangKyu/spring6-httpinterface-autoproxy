@@ -16,6 +16,12 @@ import java.util.Set;
 @Configuration(proxyBeanMethods = false)
 public class HttpInterfaceFactoryBeanFactoryPostProcessorRegistrar {
 
+    @Bean
+    public HttpInterfaceFactoryBeanFactoryPostProcessor beanFactoryPostProcessor(ApplicationContext context, HttpInterfaceFactory factory) {
+        Set<BeanDefinition> beanDefinitions = findHttpInterfaceBeanDefinitions(findBasePackage(context), context);
+        return new HttpInterfaceFactoryBeanFactoryPostProcessor(factory, beanDefinitions);
+    }
+
     String findBasePackage(ApplicationContext applicationContext) {
         return applicationContext.getBeansWithAnnotation(SpringBootApplication.class)
                 .values()
